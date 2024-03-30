@@ -1,0 +1,138 @@
+<html>
+
+<head>
+    <title>to do list</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            padding-top: 10px;
+            gap: 10px;
+        }
+
+        input {
+            font-size: 20px;
+            border: 1PX SOLID #EEE;
+            outline: NONE;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            padding: 5px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .delete {
+            background-color: red;
+        }
+
+        .resultRow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <div class="container">
+
+        <input type="text" placeholder="to do action" class="toDoList">
+        <input type="date" class="toDoDate">
+        <button class="add">Add to your list</button>
+    </div>
+    <p class="result"></p>
+
+    <script>
+        const addList = document.querySelector(".add");
+
+        const toDoList = document.querySelector(".toDoList");
+        const toDoDate = document.querySelector(".toDoDate");
+        const toDoListResult = document.querySelector(".result");
+
+        const allToDoList = [];
+
+
+        let index = 0;
+
+
+        addList.addEventListener("click", function () {
+            setTimeout(function () {
+                let toDoObject = { toDoName: '', toDoDate: '' };
+                if (toDoList.value === '' || toDoDate.value === '')
+                    return;
+                toDoObject.toDoName = toDoList.value;
+                toDoObject["toDoDate"] = toDoDate.value;
+
+                allToDoList.push(toDoObject);
+                toDoList.value = '';
+                toDoDate.value = '';
+                toDoList.focus();
+                console.log(allToDoList);
+                fillResult(allToDoList);
+            }, 1000);
+
+        })
+
+        function removeToDo(index) {
+            allToDoList.splice(index, 1);
+            fillResult(allToDoList);
+            //alert(position);
+        }
+
+        function fillResult(result) {
+            toDoListResult.innerHTML = '';
+            const mapArray = result.map(function (a, index) {
+                return `
+                <p class='resultRow'>
+                <span>${a.toDoName} - ${a.toDoDate}</span>
+                <button class="delete" onclick="removeToDo(${index})">delete</button>
+                <button class="show" onclick="showJob(${index})">show</button>
+                </p>`
+            });
+            toDoListResult.innerHTML = mapArray.join("");
+
+            //             let i;
+            //             for (i = 0; i < result.length; i++) {
+            //                 toDoListResult.innerHTML += `
+            // <p class='resultRow'>
+            // <span>${result[i].toDoName} - ${result[i].toDoDate}</span>
+            // <button class="delete" onclick="removeToDo(${i})">delete</button>
+            // </p>`;
+            //             }
+
+            //same exercise using forEach
+            // result.forEach((element,i) => {
+            //     toDoListResult.innerHTML += `<p class='resultRow'>
+            //  <span>${element.toDoName} - ${element.toDoDate}</span>
+            //  <button class="delete" onclick="removeToDo(${i})">delete</button>
+            //  </p>`
+            // });
+        }
+        /*
+        another method to apply agregation
+        toDoListResult.addEventListener("click",function(e){
+        const position=e.target.getAttribute("data-index");
+        allToDoList.splice(position,1);
+        fillResult(allToDoList);
+        });
+        */
+        function showJob(position) {
+            const filteredArray = allToDoList.filter(function (a, index) {
+                return position === index
+            });
+            document.querySelector("h1").innerHTML =
+                `Task # : ${position} - Task Desc :  ${filteredArray[0].toDoName} Due date : ${filteredArray[0].toDoDate}`
+
+        }
+
+    </script>
+</body>
+
+</html>

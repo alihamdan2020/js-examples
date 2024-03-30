@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>JS exercises</title>
+<style>
+.exercises{
+border:2px solid green;
+margin-block:10px;
+}
+button{
+padding:5px 20px;
+background-color:#2196f3;
+color:white;
+border:0px;
+outline:none;
+}
+ul{
+list-style:none;
+width:200px;
+margin:0px;
+padding:0px
+}
+ul li{
+background-color:#eee;
+margin-bottom:5px;
+padding:20px;
+}
+
+.highlight {
+background-color: yellow;
+}
+.verfInput{
+  border:1px solid green;
+  outline:0px;
+  text-align: center;
+  padding:20px;
+  width:50px;
+}
+
+.classAddesByClick{
+color:red;
+background-color: violet;
+}
+</style>
+</head>
+<body>
+<div class="exercises">
+<h1>exercise 0</h1>
+<p>using variables (result in console) </p>
+<button onclick="quantity+=1;console.log(`your quantity = ${quantity}`)">add 1</button>
+<button onclick="quantity+=2;console.log(`your quantity = ${quantity}`)">add 2</button>
+<button onclick="quantity+=3;console.log(`your quantity = ${quantity}`)">add 3</button>
+<button onclick="quantity=0;console.log(`your quantity is reset to = ${quantity}`)">reset</button>
+</div>
+<hr>
+
+<div class="exercises">
+<h1>exercise 1</h1>
+<p>change the title of button from ON to OFF and verce verca </p>
+<button id="btnOne"> ON </button>
+</div> <hr>
+
+<div class="exercises">
+<h1>exercise 2</h1>
+<p>change the title of each link from ON to OFF and return to its orignal status on mouseleave </p>
+<ul id="list">
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+<li>OFF</li>
+</ul>
+</div> <hr>
+
+<div class="exercises">
+<h1>exercise 3</h1>
+<p>determine he position of character inside a string</p>
+<input type="text" id="txt3"><input type="text" id="cha3">
+<button id="convert">determine the position</button>
+</div> <hr>
+
+<div class="exercises">
+<h1>exercise 4</h1>
+<p>convert text to capitalise, example :"hi every one" become "Hi Every One"</p>
+<input type="text" id="txtCap">
+<button id="btnCap">click to capitalise</button>
+<div id="showResultCap"></div> <hr>
+</div> <hr>
+
+<div class="exercises">
+<h1>exercise 5</h1>
+<p>add a class to sibling</p>
+<ul id="itemList">
+  <li class="highlight-list">Item 1 Highlight Next Sibling</li>
+  <li class="highlight-list">Item 2 Highlight Next Sibling</li>
+  <li class="highlight-list">Item 3 Highlight Next Sibling</li>
+  <li class="highlight-list">Item 4 Highlight Next Sibling</li>
+  <li class="highlight-list">Item 5 Highlight Next Sibling</li>
+  <li class="highlight-list">Item 6 Highlight Next Sibling</li>
+</ul>
+</div>
+<hr>
+
+<div class="exercises">
+<h1>exercise 6</h1>
+<p>form validation username mustbe between 5 and 10 and password between 5 and 10 and at leat 1 cappital letter</p>
+<form action="" class="frmValidation">
+  <div class="userInputs">
+    <label for="userName">user Name</label>
+    <input type="text" id="userName" name="userName">
+  </div>
+  <div class="userInputs">
+    <label for="userPassword">Password</label>
+    <input type="password" id="userPassword" name="Password">
+  </div>
+  <button id="btnForm">submit</button>
+</form>
+</div>
+
+<hr>
+<!--
+<div class="exercises">
+<h1>exercise 7</h1>
+<p>4 inputs to accept 4 digits</p>
+<input type="text" class="verfInput">
+<input type="text" class="verfInput">
+<input type="text" class="verfInput">
+<input type="text" class="verfInput">
+<span class="result"></span> 
+</div>
+<hr>
+-->
+<div class="exercises">
+<h1>exercise 8</h1>
+<p>display float number in 3 states</p>
+<input type="text" class="floatNumber">
+<button class="displayNumberInThreeWay">click here</button>
+<span class="result8"></span>
+</div>
+<hr>
+
+<div class="exercises special">
+<h1>exercise 9</h1>
+<p>calculation more than 2 fields</p>
+<div class="inputsField" style="margin-block:10px">
+<input type="text" class="fieldToEnter">
+<input type="text" class="fieldToEnter">
+</div>
+<button class="btnCalculation" data="add">+</button>
+<button class="btnCalculation" data="minus">-</button>
+<button class="btnCalculation" data="times">*</button>
+<button class="btnCalculation" data="division">/</button>
+
+<button id="addField">add new field</button>
+
+<span class="result9" style="display:block;background-color:aqua;padding:10px;margin-block:10px"></span>
+</div>
+
+<hr>
+
+<div class="exercises">
+<h1>exercise 10</h1>
+<p>use local storage to change background color</p>
+<button id="creatLocalStorage">set local storage background 0,0,0,0.5</button>
+<span>reload your page to apply the new background-color</span>
+<button id="chngColor">reset local storage</button>
+</div>
+
+<hr>
+<div class="exercises">
+<h1>exercise 11</h1>
+<p>use local storage to save object in it</p>
+<button class="object">increase index by +1</button>
+<button class="resetObject">reset the object</button>
+</div>
+<hr>
+
+<div class="exercises">
+<h1>exercises 12</h1>
+<p>use default variable resut in console</p>
+<button id="addDefault">add default</button>
+<button id="addNotDefault">add not default</button>
+</div>
+<hr>
+
+
+<div class="exercises">
+<h1>exercise 13</h1>
+<p>calcuate shipping if your order < 40 add 10, 0 fees otherwise</p>
+<input type="text" placeholder="please type your order cost" class="orderCost">
+<button id="shippingBtn">calculate shipping cost</button>
+<p class="resultShipping"></p>
+</div>
+<hr>
+
+<div class="exercises">
+  <h1>exercise 14</h1>
+  <p>change content of button to loading than "done"</p>
+  <button id="loading">press</button>
+  </div>
+  <hr>
+
+<script src="script.js"></script>
+
+</body>
+</html>
