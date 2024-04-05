@@ -13,21 +13,28 @@ font-family:system-ui;
 .products{
 display:flex;
 gap:10px;
+flex-wrap: wrap;
 }
 .productCard{
-border:2px solid green;
-padding:10px;
+border:1px solid #eee;
+padding:5px;
 flex-basis:200px;
-text-align:center
+display: flex;
+flex-direction: column;
+align-items: center;
 }
+
 .productText{
 font-weight:lighter;
-color:violet
+color:violet;
+text-align: center;
+min-height: 60px;
 }
 .productCard img{
 max-width:100%;
 margin-block:10px;
-height:200px;
+height:100px;
+aspect-ratio: 1;
 }
 .btnAdd,.btnReset{
 background:aqua;
@@ -36,7 +43,9 @@ padding:5px 10px;
 border-radius:1px;
 margin-block:20px;
 border:none;
-cursor:pointer
+cursor:pointer;
+display: block;
+border-radius: 10px;
 }
 header{
 padding:20px;
@@ -71,10 +80,15 @@ margin-inline:5px;
 }
 .slider{
         height:300px;
-        background-image: url('img1.jpg');
+        background-image: url('images/img1.jpg');
         background-repeat: no-repeat;
         background-size: 100% 100%;
         transition: 0.5s;
+}
+.disableBtn{
+        background-color: brown;
+        cursor:context-menu;
+        cursor:not-allowed;
 }
 </style>
 </head>

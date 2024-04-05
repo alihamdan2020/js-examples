@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index page</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(171, 215, 170);
+            padding-inline: 10px;
+        }
+        .logo{
+            width:200px;
+        }
+        .logo img{
+            width:100%;
+        }
+        header .choose-class{
+            padding: 5px;
+            width:100px;
+            outline: none;
+            border: none;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            gap:10px;
+            justify-content: space-between;
+            padding-inline: 10px;
+        }
+        .container > *{
+            flex: 350px;
+            flex-grow: 0;
+            border:1px solid green;
+        }
+        .studentCard > *{
+            margin-block: 10px;
+        }
+        </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img1.jpg" alt="">
+        </div>
+        <div class="filterByClass">
+            <select class="choose-class">
+                <option value="all" selected>All students</option>
+                <option value="bt1">BT1</option>
+                <option value="bt2">BT2</option>
+                <option value="bt3">BT3</option>
+            </select>
+        </div>
+    </header>
+    <div class="container"></div>
+   
+    <script type="module" src="scripts/script.js"></script>
+</body>
+</html>

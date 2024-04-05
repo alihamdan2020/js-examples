@@ -1,4 +1,5 @@
 import {products} from './products.js';
+
 let counter = document.querySelector(".counter");
 let mainContent = document.querySelector(".mainContent");
 
@@ -22,9 +23,6 @@ let USDollar = new Intl.NumberFormat('en-US', {
 
 const container = document.querySelector(".products");
 
-
-
-
 /*
 since your variable has same name of obect property we can write
 let productName=products[0].productName;*/
@@ -39,61 +37,31 @@ const filteredArray = products.filter(function (product) {
 console.log(filteredArray);
 
 
-
-function fillProducts(product,i) {
-
-	
-	let productCard = document.createElement("div");
-	productCard.className = "productCard";
-
-	let productImg = document.createElement("img");
-	productImg.setAttribute("src", product.productImg);
-	productCard.appendChild(productImg);
-
-
-
-	let productName = document.createElement("h3");
-	productName.setAttribute("class", "productText");
-	productName.textContent = product.productName;
-	productCard.appendChild(productName);
-
-	let productDesc = document.createElement("p");
-	productDesc.setAttribute("class", "productText");
-	productDesc.textContent = product.productDesc;
-	productCard.appendChild(productDesc);
-
-	let productPrice = document.createElement("p");
-	productPrice.className = "productText productPrice";
-	productPrice.textContent = USDollar.format(product.productPrice);
-	productCard.appendChild(productPrice);
-
-	let inputQty=document.createElement("input");
-	inputQty.setAttribute("type","number");
-	inputQty.setAttribute("value","1");
-	inputQty.setAttribute("min","1");
-	inputQty.setAttribute("max","5");
-	productCard.appendChild(inputQty);
-
-	
-	let addButton = document.createElement("button");
-	addButton.className = "btnAdd";
-	addButton.setAttribute("data-id", product.productId);
-	addButton.onclick=function(){addToCard(this)};
-	addButton.textContent = "add to card";
-
-	productCard.appendChild(addButton);
-
-	return productCard;
+function fillProducts(product) {
+const checkedButton=
+ product.productAvailable===true ? `<button class="btnAdd" data-id="${product.productId}"}>add to cart</button>` : `<button class="btnAdd disableBtn" data-id="${product.productId}" disabled>add to cart 2222</button>`;
+const resultHTML=
+`
+<div class="productCard">
+	<img src="images/${product.productImg}">
+	<h3 class="productText">${product.productName}</h3>
+	<p class="productText">${product.productDesc}</p>
+	<p>${USDollar.format(product.productPrice)}</p>
+	<input type="number" value="1" min="1" max="5">
+	${checkedButton}
+	</div>`
+return resultHTML;
 }
 
 
 
 
 let chooseOption;
-for (i = 0; i < products.length; i++) {
-	container.appendChild(fillProducts(products[i]));
-}
+container.innerHTML='';
 
+products.forEach(function(product){
+	container.innerHTML+=fillProducts(product);
+})
 
 let filteredProduct = document.querySelectorAll(".filteredProduct");
 
@@ -105,12 +73,12 @@ filteredProduct.forEach(function (opt) {
 		a = 0;
 		if (chooseOption === '1') {
 			for (i = 0; i < products.length; i++) {
-				container.appendChild(fillProducts(products[i]));
+				container.innerHTML+=fillProducts(products[i]);
 			}
 		}
 		else {
 			for (i = 0; i < filteredArray.length; i++) {
-				container.appendChild(fillProducts(products[i]));
+				container.innerHTML+=fillProducts(products[i]);
 			}
 		}
 
@@ -132,25 +100,23 @@ let bag =
 	// productQty: 0
 };
 
+const addToCartButton=document.querySelectorAll(".btnAdd");
+addToCartButton.forEach(function(button){
+	button.addEventListener("click",function(){
+		addToCard(this);
+	})
+})
 
 function addToCard(btn) {
+
 	bag =
 	{
 		productId: 0,
-		productName: '',
-		productPrice: 0,
 		productQty: 0
 	};
 
 
 	let dataQty = parseInt(shop.getAttribute("data-qty"));
-
-
-	bag.productName = btn.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
-
-
-	let price = btn.previousElementSibling.previousElementSibling.textContent.replace("$", "");
-	bag.productPrice = parseFloat(price);
 
 	bag.productId = btn.getAttribute("data-id");
 	bag.productQty = btn.previousElementSibling.value;
@@ -184,7 +150,7 @@ setInterval(function()
 {
 	if(imgPosition===3)
 	imgPosition=0;
-	slider.style.backgroundImage=`url(${images[imgPosition]})`;
+	slider.style.backgroundImage=`url(images/${images[imgPosition]})`;
 	imgPosition++;
 	
 }

@@ -1,61 +1,82 @@
 <html>
 <head>
 <title>your card</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .mainContainer{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .mainContainer > *{
+        flex:1;
+    }
+    .contentSummary{
+        padding:10px;
+    }
+    .contentSummary p{
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 10px;
+        margin-block: 10px;
+    }
+    .contentSummary p:last-child{
+        color:red;
+        font-size: 2rem;
+    }
+    .itemCheckout{
+        display: flex;
+        gap:10px;
+        padding: 10px;
+        border:1px solid #eee
+    }
+    .itemCheckout div{
+        border: 0px solid green;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:10px
+    }
+    .itemCheckout span{
+        width:150px;
+        border:0px solid green;
+        display: inline-block;
+    }
+    .itemCheckout img{
+        width:100px
+    }
+
+    button{
+        all:unset;
+        background-color: lightskyblue;
+        padding: 10px;
+        cursor: pointer;;
+    }
+</style>
 </head>
 <body>
 <div class="main">
+    <div class="mainContainer">
 <div class="container"></div>
-<button>BUY</button>
+<div class="summary" style="border:1px solid green;">
+    <div class="contentSummary">
+    
+    </div>
+</div>
+</div>
+<div class="controls" style="padding-inline: 20px;margin-top: 20px;">
+
 <button id="returnToShop" onclick='window.close();'>return to shop</button>
 </div>
-<script>
-const container=document.querySelector(".container");
-const btnBuy=document.querySelector("button");
-const btnReturn=document.querySelector("#returnToShop");
+
+</div>
 
 
-const fullBag=JSON.parse(localStorage.getItem("fullBag")) || false;
-if (fullBag===false){
-btnBuy.style.display="none";
-returnToShop.style.display="none";
-container.innerHTML="your bag is empty";
-}
-
-else{
-for(i=0;i<fullBag.length;i++){
-let rowResult=document.createElement("div");
-rowResult.className="rowResult";
-
-let productId=document.createElement("span");
-productId.textContent=fullBag[i].productId;
-
-let productName=document.createElement("span");
-productName.textContent=fullBag[i].productName;
-
-let productPrice=document.createElement("span");
-productPrice.textContent=fullBag[i].productPrice;
-
-let productQty=document.createElement("span");
-productQty.textContent=fullBag[i].productQty;
-
-rowResult.appendChild(productId);
-rowResult.appendChild(productName);
-rowResult.appendChild(productPrice);
-rowResult.appendChild(productQty);
-container.appendChild(rowResult);
-}
-}
-
-btnBuy.addEventListener("click",function(){
-localStorage.removeItem("qty");
-localStorage.removeItem("fullBag");
-const openerWindow=window.opener;
-window.close();			
-
-if (openerWindow) {
-                openerWindow.location.reload();
-            }
-});
-</script>
+<script type="module" src="checkout.js"></script>
 </body>
 </html>
